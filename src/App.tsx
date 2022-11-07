@@ -37,11 +37,21 @@ function App() {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formCardValue">
             <Form.Label>Value</Form.Label>
-            <Form.Control type="value" placeholder="123" ref={cardValueInput} />
+            <Form.Control
+              type="value"
+              placeholder="Card Values Ex:'3,4,5,6,7,A,K,Q,J'"
+              ref={cardValueInput}
+            />
           </Form.Group>
-          <Button type="submit">Submit</Button>
+          <div className="flex w-full justify-center">
+            <Button type="submit" className="mx-4 px-4 py-2">
+              Enter
+            </Button>
+            <Button type="submit" className="mx-4 px-4 py-2">
+              Reset
+            </Button>
+          </div>
         </Form>
-        <Button>Hello!</Button>
         <SomeComponent></SomeComponent>
       </div>
     </div>
