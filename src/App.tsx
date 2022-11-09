@@ -25,11 +25,11 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <div className="bg-orange-600">
+    <div className="App flex flex-col items-center">
+      <div className="bg-orange-600 text-white p-4 px-6 w-full">
         <h1>Advanced Card Counter</h1>
       </div>
-      <div className="m-4">
+      <div className="m-4 container">
         <Form name="myForm" onSubmit={formSubmit} className="my-4">
           <Form.Group className="mb-3" controlId="formCardName">
             <Form.Label>Card Name</Form.Label>
@@ -39,7 +39,7 @@ function App() {
             <Form.Label>Value</Form.Label>
             <Form.Control
               type="value"
-              placeholder="Card Values Ex:'3,4,5,6,7,A,K,Q,J'"
+              placeholder="Card Values Ex: '3,4,5,6,7,A,K,Q,J'"
               ref={cardValueInput}
             />
           </Form.Group>
