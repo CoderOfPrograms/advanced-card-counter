@@ -15,6 +15,7 @@ const cardMapUltimate = new Map<string, number>(
   Object.entries(cardMapDefaultValues2)
 );
 
+
 const wongHalvesRunning = "Wong Halves Running Count: ";
 const wongHalvesTrue = "Wong Halves True Count: ";
 const griffinURunning = "Griffin's Ultimate Running Count: ";
@@ -22,6 +23,7 @@ const griffinUTrue = "Griffin's Ultimate True Count: ";
 
 function App() {
   const cardValueInput = useRef<HTMLInputElement>(null);
+  const [wongHalvesCount, setWongHalvesCount] = useState("");
 
   function formSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -57,10 +59,14 @@ function App() {
             </Button>
           </div>
         </Form>
-        <div>{wongHalvesRunning}</div>
-        <div>{wongHalvesTrue}</div>
-        <div>{griffinURunning}</div>
-        <div>{griffinUTrue}</div>
+        <div>
+          <span>Wong Halves Running Count: {wongHalvesCount}</span>
+          <span>{wongHalvesTrue}</span>
+        </div>
+        <div className="mt-2">
+          <span>{griffinURunning}</span>
+          <span>{griffinUTrue}</span>
+        </div>
       </div>
     </div>
   );
