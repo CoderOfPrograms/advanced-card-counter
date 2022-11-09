@@ -2,21 +2,26 @@ import React, { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.scss";
 import { Button, Form } from "react-bootstrap";
-import SomeComponent from "./SomeComponent";
 
 import cardMapDefaultValues from "./cardValues.json";
 
 const cardMapWong = new Map<string, number>(
   Object.entries(cardMapDefaultValues)
 );
+
 import cardMapDefaultValues2 from "./cardValues2.json";
+
 const cardMapUltimate = new Map<string, number>(
   Object.entries(cardMapDefaultValues2)
 );
 
+const wongHalvesRunning = "Wong Halves Running Count: ";
+const wongHalvesTrue = "Wong Halves True Count: ";
+const griffinURunning = "Griffin's Ultimate Running Count: ";
+const griffinUTrue = "Griffin's Ultimate True Count: ";
+
 function App() {
   const cardValueInput = useRef<HTMLInputElement>(null);
-  // const [text, setText] = useState("Hello!");
 
   function formSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -52,7 +57,10 @@ function App() {
             </Button>
           </div>
         </Form>
-        <SomeComponent></SomeComponent>
+        <div>{wongHalvesRunning}</div>
+        <div>{wongHalvesTrue}</div>
+        <div>{griffinURunning}</div>
+        <div>{griffinUTrue}</div>
       </div>
     </div>
   );
