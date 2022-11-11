@@ -6,7 +6,7 @@ specifiers:
   '@types/react-dom': ^18.0.8
   '@vitejs/plugin-react': ^2.2.0
   autoprefixer: ^10.4.13
-  bootstrap: ^5.2.2
+  bootstrap: github:blankse/bootstrap#c85a51d4ead9a1b3f56822cae7b6fc1be250f7dc
   postcss: ^8.4.18
   react: ^18.2.0
   react-bootstrap: ^2.6.0
@@ -19,7 +19,7 @@ specifiers:
 dependencies:
   '@popperjs/core': 2.11.6
   autoprefixer: 10.4.13_postcss@8.4.18
-  bootstrap: 5.2.2_@popperjs+core@2.11.6
+  bootstrap: github.com/blankse/bootstrap/c85a51d4ead9a1b3f56822cae7b6fc1be250f7dc_@popperjs+core@2.11.6
   postcss: 8.4.18
   react: 18.2.0
   react-bootstrap: 2.6.0_2zx2umvpluuhvlq44va5bta2da
@@ -531,14 +531,6 @@ packages:
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
-
-  /bootstrap/5.2.2_@popperjs+core@2.11.6:
-    resolution: {integrity: sha512-dEtzMTV71n6Fhmbg4fYJzQsw1N29hJKO1js5ackCgIpDcGid2ETMGC6zwSYw09v05Y+oRdQ9loC54zB1La3hHQ==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.6
-    dependencies:
-      '@popperjs/core': 2.11.6
-    dev: false
 
   /braces/3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
@@ -1462,4 +1454,15 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+    dev: false
+
+  github.com/blankse/bootstrap/c85a51d4ead9a1b3f56822cae7b6fc1be250f7dc_@popperjs+core@2.11.6:
+    resolution: {tarball: https://codeload.github.com/blankse/bootstrap/tar.gz/c85a51d4ead9a1b3f56822cae7b6fc1be250f7dc}
+    id: github.com/blankse/bootstrap/c85a51d4ead9a1b3f56822cae7b6fc1be250f7dc
+    name: bootstrap
+    version: 5.2.2
+    peerDependencies:
+      '@popperjs/core': ^2.11.6
+    dependencies:
+      '@popperjs/core': 2.11.6
     dev: false
