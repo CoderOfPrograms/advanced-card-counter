@@ -39,11 +39,11 @@ function App() {
       <div className="m-4 container">
         <Form name="myForm" onSubmit={formSubmit} className="my-4">
           <Form.Group className="mb-3" controlId="formCardName">
-            <Form.Label>Card Name</Form.Label>
+            <Form.Label>Number of Decks</Form.Label>
             <Form.Control type="text" placeholder="Number of Decks Ex: '3'" />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formCardValue">
-            <Form.Label>Value</Form.Label>
+            <Form.Label>Card Value{"(s)"}</Form.Label>
             <Form.Control
               type="value"
               placeholder="Card Values Ex: '3,4,5,6,7,A,K,Q,J'"
