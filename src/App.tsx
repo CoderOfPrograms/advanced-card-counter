@@ -24,8 +24,14 @@ const griffinUTrue = "Griffin's Ultimate True Count: ";
 function App() {
   //Input Value for Card
   const cardValueInput = useRef<HTMLInputElement>(null);
-  //Wong Halves Count Value
-  const [wongHalvesCount, setWongHalvesCount] = useState("");
+  //Wong Halves True Count Value
+  const [wongHalvesCount, setWongHalvesCount] = useState(0);
+  //Wong Halves Running Count Value
+  const [wongHalvesRCount, setWongHalvesRCount] = useState(0);
+  //Griffin's Ultimate True Count Value
+  const [griffinUCount, setGriffinUCount] = useState(0);
+  //Griffin's Ultimate Running Count Value
+  const [griffinURCount, setGriffinURCount] = useState(0);
 
   //Form Submit
   function formSubmit(event: React.FormEvent) {
@@ -46,14 +52,21 @@ function App() {
         {/*Number of Decks form*/}
         <Form name="myForm" onSubmit={formSubmit} className="my-4">
           <Form.Group className="mb-3" controlId="formCardName">
+            {/*Label*/}
             <Form.Label>Number of Decks</Form.Label>
-            <Form.Control type="text" placeholder="Number of Decks Ex: '3'" />
+            <Form.Control
+              type="text"
+              //Placeholder Values
+              placeholder="Number of Decks Ex: '3'"
+            />
           </Form.Group>
           {/*Card Values Form*/}
           <Form.Group className="mb-3" controlId="formCardValue">
+            {/*Label*/}
             <Form.Label>Card Value{"(s)"}</Form.Label>
             <Form.Control
               type="value"
+              //Placeholder Values
               placeholder="Card Values Ex: '3,4,5,6,7,A,K,Q,J'"
               ref={cardValueInput}
             />
@@ -69,15 +82,31 @@ function App() {
             </Button>
           </div>
         </Form>
+
         <div>
           {/*Wong Halves Values to be displayed  */}
-          <span>Wong Halves Running Count: {wongHalvesCount}</span>
-          <span>{wongHalvesTrue}</span>
+
+          <span className="mr-4">
+            {wongHalvesRunning} {wongHalvesRCount}
+          </span>
+
+          <span>
+            {wongHalvesTrue} {wongHalvesCount}
+          </span>
         </div>
+
         <div className="mt-2">
           {/*Griffin's Ultimate Values to be displayed  */}
-          <span>{griffinURunning}</span>
-          <span>{griffinUTrue}</span>
+
+          <span>
+            {/*Griffin's Ultimate Running Values to be displayed  */}
+            {griffinURunning} {griffinURCount}
+          </span>
+
+          <span>
+            {/*Griffin's Ultimate True Values to be displayed  */}
+            {griffinUTrue} {griffinUCount}
+          </span>
         </div>
       </div>
     </div>
