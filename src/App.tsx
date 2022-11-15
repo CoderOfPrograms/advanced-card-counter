@@ -103,7 +103,7 @@ function App() {
             </Button>
             {/* Reset Button */}
             <Button
-              type="submit"
+              type="reset"
               //Margins and positioning
               className="mx-4 px-4 py-2"
             >
