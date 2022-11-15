@@ -5,20 +5,26 @@ import { Button, Form } from "react-bootstrap";
 //Map of card values for Wong Halves Calculation
 import cardMapDefaultValues from "./cardValues.json";
 
+//Making it a map
 const cardMapWong = new Map<string, number>(
   Object.entries(cardMapDefaultValues)
 );
+
 //Map of card values for Griffin's Ultimate Calculation
 import cardMapDefaultValues2 from "./cardValues2.json";
 
+//Making it a map
 const cardMapUltimate = new Map<string, number>(
   Object.entries(cardMapDefaultValues2)
 );
 
-//Constants for spans
+//Constant for span1
 const wongHalvesRunning = "Wong Halves Running Count: ";
+//Constant for span2
 const wongHalvesTrue = "Wong Halves True Count: ";
+//Constant for span3
 const griffinURunning = "Griffin's Ultimate Running Count: ";
+//Constant for span4
 const griffinUTrue = "Griffin's Ultimate True Count: ";
 
 function App() {
@@ -36,7 +42,6 @@ function App() {
   //Form Submit
   function formSubmit(event: React.FormEvent) {
     event.preventDefault();
-
     cardValueInput.current!.value = "";
   }
 
@@ -44,14 +49,29 @@ function App() {
     //Formatting overall
     <div className="App flex flex-col items-center">
       {/* Title of Website*/}
-      <div className="bg-orange-600 text-white p-4 px-6 w-full">
+      <div
+        //Color and formatting of title
+        className="bg-orange-600 text-white p-4 px-6 w-full"
+      >
         <h1>Advanced Card Counter</h1>
       </div>
       {/* Form code */}
-      <div className="m-4 container">
+      <div
+        //Margins
+        className="m-4 container"
+      >
         {/*Number of Decks form*/}
-        <Form name="myForm" onSubmit={formSubmit} className="my-4">
-          <Form.Group className="mb-3" controlId="formCardName">
+        <Form
+          name="myForm"
+          onSubmit={formSubmit}
+          //Margins
+          className="my-4"
+        >
+          <Form.Group
+            //Margins
+            className="mb-3"
+            controlId="formCardName"
+          >
             {/*Label*/}
             <Form.Label>Number of Decks</Form.Label>
             <Form.Control
@@ -73,29 +93,43 @@ function App() {
           </Form.Group>
           <div className="flex w-full justify-center">
             {/* Enter Button */}
-            <Button type="submit" className="mx-4 px-4 py-2">
+            <Button
+              type="submit"
+              //Margins and positioning
+              className="mx-4 px-4 py-2"
+            >
+              {/*Name of the button*/}
               Enter
             </Button>
             {/* Reset Button */}
-            <Button type="submit" className="mx-4 px-4 py-2">
+            <Button
+              type="submit"
+              //Margins and positioning
+              className="mx-4 px-4 py-2"
+            >
+              {/*Name of the button*/}
               Reset
             </Button>
           </div>
         </Form>
 
-        <div>
+        {/*Setting a flexbox */}
+        <div className="w-full flex">
           {/*Wong Halves Values to be displayed  */}
 
-          <span className="mr-4">
+          <span>
             {wongHalvesRunning} {wongHalvesRCount}
           </span>
 
-          <span>
+          {/*Text Align Right  */}
+
+          <span className="flex-1 text-right">
             {wongHalvesTrue} {wongHalvesCount}
           </span>
         </div>
 
-        <div className="mt-2">
+        {/*Setting a flexbox */}
+        <div className="w-full flex">
           {/*Griffin's Ultimate Values to be displayed  */}
 
           <span>
@@ -103,7 +137,9 @@ function App() {
             {griffinURunning} {griffinURCount}
           </span>
 
-          <span>
+          {/*Text Align Right  */}
+
+          <span className="flex-1 text-right">
             {/*Griffin's Ultimate True Values to be displayed  */}
             {griffinUTrue} {griffinUCount}
           </span>
