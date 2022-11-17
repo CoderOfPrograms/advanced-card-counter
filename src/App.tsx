@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.scss";
 import { Button, Form } from "react-bootstrap";
+import "./App.scss";
 //Map of card values for Wong Halves Calculation
+import { toast } from "react-toastify";
 import cardMapDefaultValues from "./cardValues.json";
 
 //Making it a map
@@ -31,18 +31,48 @@ function App() {
   //Input Value for Card
   const cardValueInput = useRef<HTMLInputElement>(null);
   //Wong Halves True Count Value
-  const [wongHalvesCount, setWongHalvesCount] = useState(0);
+  const [wongHalvesCount, setWongHalvesCount] = useState<string | number>(0);
   //Wong Halves Running Count Value
-  const [wongHalvesRCount, setWongHalvesRCount] = useState(0);
+  const [wongHalvesRCount, setWongHalvesRCount] = useState<string | number>(0);
   //Griffin's Ultimate True Count Value
-  const [griffinUCount, setGriffinUCount] = useState(0);
+  const [griffinUCount, setGriffinUCount] = useState<string | number>(0);
   //Griffin's Ultimate Running Count Value
-  const [griffinURCount, setGriffinURCount] = useState(0);
+  const [griffinURCount, setGriffinURCount] = useState<string | number>(0);
+
+  //Card values storage
+  const [enteredValueCard, setCardValue] = useState<string[]>([]);
+  //Deck values storage
+  const [enteredValueDeck, setDeckValue] = useState<string | number>(1);
 
   //Form Submit
   function formSubmit(event: React.FormEvent) {
     event.preventDefault();
-    cardValueInput.current!.value = "";
+
+    const cardValues = cardValueInput.current!.value.split(/,\s*/);
+
+    setCardValue(cardValues);
+
+    var sum = 0;
+    for (const enteredValue of cardValues) {
+      if (cardMapWong.has(enteredValue)) {
+        sum += cardMapWong.get(enteredValue)!;
+      } else {
+        toast(`${enteredValue} is not a card value.`, { type: "error" });
+        return;
+      }
+    }
+    setWongHalvesRCount(sum);
+    sum = 0;
+    for (const enteredValue of cardValues) {
+      if (cardMapWong.has(enteredValue)) {
+        sum += cardMapUltimate.get(enteredValue)!;
+      } else {
+        toast(`${enteredValue} is not a card value.`, { type: "error" });
+        return;
+      }
+    }
+    setGriffinURCount(sum);
+    toast("Complete");
   }
 
   return (
@@ -51,7 +81,12 @@ function App() {
       {/* Title of Website*/}
       <div
         //Color and formatting of title
-        className="bg-orange-600 text-white p-4 px-6 w-full"
+        className="bg-orange-600
+         text-white 
+         p-4 
+         px-6 
+         w-full
+         text-center"
       >
         <h1>Advanced Card Counter</h1>
       </div>
@@ -91,12 +126,18 @@ function App() {
               ref={cardValueInput}
             />
           </Form.Group>
-          <div className="flex w-full justify-center">
+          <div
+            className="flex 
+            w-full 
+            justify-center"
+          >
             {/* Enter Button */}
             <Button
               type="submit"
               //Margins and positioning
-              className="mx-4 px-4 py-2"
+              className="mx-4 
+              px-4 
+              py-2"
             >
               {/*Name of the button*/}
               Enter
