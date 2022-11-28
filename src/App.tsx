@@ -30,6 +30,8 @@ const griffinUTrue = "Griffin's Ultimate True Count: ";
 function App() {
   //Input Value for Card
   const cardValueInput = useRef<HTMLInputElement>(null);
+  //Input Value for Deck
+  const cardDeckInput = useRef<HTMLInputElement>(null);
   //Wong Halves True Count Value
   const [wongHalvesCount, setWongHalvesCount] = useState<string | number>(0);
   //Wong Halves Running Count Value
@@ -47,9 +49,8 @@ function App() {
   //Form Submit
   function formSubmit(event: React.FormEvent) {
     event.preventDefault();
-
     const cardValues = cardValueInput.current!.value.split(/,\s*/);
-
+    const deckValues = Number(cardDeckInput.current!.value);
     setCardValue(cardValues);
 
     var sum = 0;
@@ -57,11 +58,18 @@ function App() {
       if (cardMapWong.has(enteredValue)) {
         sum += cardMapWong.get(enteredValue)!;
       } else {
+        //Notification for card value not existing
         toast(`${enteredValue} is not a card value.`, { type: "error" });
         return;
       }
     }
     setWongHalvesRCount(sum);
+    //
+    if (deckValues == NaN) {
+      setWongHalvesCount(sum);
+    } else {
+      setWongHalvesCount(sum / deckValues);
+    }
     sum = 0;
     for (const enteredValue of cardValues) {
       if (cardMapWong.has(enteredValue)) {
@@ -72,9 +80,19 @@ function App() {
       }
     }
     setGriffinURCount(sum);
+    //
+    if (deckValues == NaN) {
+      setGriffinUCount(sum);
+    } else {
+      setGriffinUCount(sum / deckValues);
+    }
     toast("Complete");
   }
+  function formReset(event: React.FormEvent) {
+    event.preventDefault();
 
+    toast("Complete");
+  }
   return (
     //Formatting overall
     <div className="App flex flex-col items-center">
@@ -93,7 +111,8 @@ function App() {
       {/* Form code */}
       <div
         //Margins
-        className="m-4 container"
+        className="m-4 
+        container"
       >
         {/*Number of Decks form*/}
         <Form
@@ -110,9 +129,10 @@ function App() {
             {/*Label*/}
             <Form.Label>Number of Decks</Form.Label>
             <Form.Control
-              type="text"
+              type="value"
               //Placeholder Values
               placeholder="Number of Decks Ex: '3'"
+              ref={cardDeckInput}
             />
           </Form.Group>
           {/*Card Values Form*/}
@@ -145,6 +165,7 @@ function App() {
             {/* Reset Button */}
             <Button
               type="reset"
+              onSubmit={formReset}
               //Margins and positioning
               className="mx-4 px-4 py-2"
             >
