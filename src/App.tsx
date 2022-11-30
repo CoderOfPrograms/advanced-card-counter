@@ -92,7 +92,9 @@ function App() {
         sum += cardMapUltimate.get(enteredValue)!;
       } else {
         //Notification that an invalid number or character was added and ends program
-        toast(`${enteredValue} is not a card value.`, { type: "error" });
+        toast(`${enteredValue} is not a card value.`, {
+          type: "error",
+        });
         return;
       }
     }
@@ -119,7 +121,9 @@ function App() {
     setWongHalvesCount(0);
     //Sets the Wong Halves Running Count to 0
     setWongHalvesRCount(0);
-    toast("Reset", { type: "success" });
+    toast("Reset", {
+      type: "success",
+    });
   }
   return (
     //Formatting overall
