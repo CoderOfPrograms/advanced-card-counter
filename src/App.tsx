@@ -46,52 +46,80 @@ function App() {
   //Deck values storage
   const [enteredValueDeck, setDeckValue] = useState<string | number>(1);
 
-  //Form Submit
+  //For the Enter Button
   function formSubmit(event: React.FormEvent) {
+    //Prevents the default from occurring
     event.preventDefault();
+    //Setting the values in the Card values(after splitting it by commas ignoring spaces) form to this variable
     const cardValues = cardValueInput.current!.value.split(/,\s*/);
-    const deckValues = Number(cardDeckInput.current!.value);
-    setCardValue(cardValues);
+    //Setting the values in the Deck Values form to this variable
+    const deckValues = parseInt(cardDeckInput.current!.value);
 
+    //Checks if there is a value that works for deck values
+    if (isNaN(deckValues)) {
+      //Returns error and exits the program
+      toast(`${cardDeckInput.current!.value} is not a valid deck value.`, {
+        type: "error",
+      });
+      return;
+    }
+
+    setCardValue(cardValues);
+    //Sum is the key variable for the final results
     var sum = 0;
+    //For Wong Halves references it with the map for Wonghalves then adds the appropriate numbers to sum
     for (const enteredValue of cardValues) {
       if (cardMapWong.has(enteredValue)) {
         sum += cardMapWong.get(enteredValue)!;
       } else {
-        //Notification for card value not existing
+        //Notification that an invalid number or character was added and ends program
         toast(`${enteredValue} is not a card value.`, { type: "error" });
         return;
       }
     }
     setWongHalvesRCount(sum);
-    //
-    if (deckValues == NaN) {
+
+    //Checks if the number is appropriate then changes the appropriate values
+    if (isNaN(deckValues) && deckValues <= 0) {
       setWongHalvesCount(sum);
     } else {
       setWongHalvesCount(sum / deckValues);
     }
+    //For Griffin's ultimate references it with the map for Griffin's ultimate then adds the appropriate numbers to sum
     sum = 0;
     for (const enteredValue of cardValues) {
       if (cardMapWong.has(enteredValue)) {
         sum += cardMapUltimate.get(enteredValue)!;
       } else {
+        //Notification that an invalid number or character was added and ends program
         toast(`${enteredValue} is not a card value.`, { type: "error" });
         return;
       }
     }
+
     setGriffinURCount(sum);
-    //
-    if (deckValues == NaN) {
+
+    //Checks if the number is appropriate then changes the appropriate values
+    if (isNaN(deckValues) && deckValues <= 0) {
       setGriffinUCount(sum);
     } else {
       setGriffinUCount(sum / deckValues);
     }
+    //Sends notification that its complete
     toast("Complete");
   }
-  function formReset(event: React.FormEvent) {
-    event.preventDefault();
 
-    toast("Complete");
+  //For the Reset Button
+  function formReset() {
+    //Sets the Griffin's Ultimate Count to 0
+    setGriffinUCount(0);
+    //Sets the Griffin's Ultimate Running Count to 0
+    setGriffinURCount(0);
+    //Sets the Wong Halves Count to 0
+    setWongHalvesCount(0);
+    //Sets the Wong Halves Running Count to 0
+    setWongHalvesRCount(0);
+    toast("Reset", { type: "success" });
   }
   return (
     //Formatting overall
@@ -165,7 +193,7 @@ function App() {
             {/* Reset Button */}
             <Button
               type="reset"
-              onSubmit={formReset}
+              onClick={formReset}
               //Margins and positioning
               className="mx-4 px-4 py-2"
             >
