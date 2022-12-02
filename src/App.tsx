@@ -121,6 +121,8 @@ function App() {
     setWongHalvesCount(0);
     //Sets the Wong Halves Running Count to 0
     setWongHalvesRCount(0);
+
+    //Shows message that Reset is successfull
     toast("Reset", {
       type: "success",
     });
