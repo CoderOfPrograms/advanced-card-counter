@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "./App.scss";
-//Map of card values for Wong Halves Calculation
 import { toast } from "react-toastify";
+
+//Map of card values for Wong Halves Calculation
 import cardMapDefaultValues from "./cardValues.json";
 
 //Making it a map
